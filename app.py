@@ -1,4 +1,3 @@
-﻿# -*- coding: utf-8 -*- 
 '''
     test flask framework
     by yan-bin-lin
@@ -41,7 +40,7 @@ def callback():
                     if method == "eddy":
                         line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
                     else:
-                        line_bot_api.reply_message(reply_token, TextSendMessage(text = '無效指令:' + method ))           
+                        line_bot_api.reply_message(reply_token, TextSendMessage(text = 'Invalid instruction: ' + method ))           
     return "<p>hello world</p>"
 
 
