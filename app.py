@@ -3,7 +3,7 @@
     by yan-bin-lin
 '''
 from flask import Flask
-import json
+import os
 from flask import request
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
@@ -21,7 +21,7 @@ def callback():
     reply_token = decode['events'][0]["replyToken"]
     print(reply_token)
     line_bot_api = LineBotApi(channel_token)
-    line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green !'))
+    line_bot_api.reply_message(reply_token, TextSendMessage(text='Hello World!'))
     return "<p>hello world</p>"
     
 '''    
@@ -40,4 +40,6 @@ def callback():
 
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    # Bind to PORT if defined, otherwise default to 5000.
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
