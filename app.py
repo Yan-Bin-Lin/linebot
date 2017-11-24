@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+ï»¿# -*- coding: utf-8 -*- 
 '''
     test flask framework
     by yan-bin-lin
@@ -41,7 +41,7 @@ def callback():
                     if method == "eddy":
                         line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
                     else:
-                        line_bot_api.reply_message(reply_token, TextSendMessage(text = 'µL®Ä«ü¥O:' + method ))           
+                        line_bot_api.reply_message(reply_token, TextSendMessage(text = 'ç„¡æ•ˆæŒ‡ä»¤:' + method ))           
     return "<p>hello world</p>"
 
 
