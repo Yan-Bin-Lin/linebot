@@ -33,12 +33,13 @@ def callback():
     tlist = text.split(' ')
     if len(tlist) >= 2:
         judge = tlist[0] #lb.
+        method = u''
         method = tlist[1] #news ,control = tlis[2]       
         if judge == "lb.":
             if method == "eddy":
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
             else:
-                out_text = '無效指令: '.encode('utf_8').decode('utf-8') + method.encode('utf-8').decode('utf-8')
+                out_text = u'無效指令: '.encode('utf_8').decode('utf-8') + method.encode('utf-8').decode('utf-8')
                 line_bot_api.reply_message(reply_token, TextSendMessage(text = out_text))           
     return "<p>hello world</p>"
 
