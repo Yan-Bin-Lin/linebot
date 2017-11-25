@@ -20,27 +20,25 @@ def website_test():
 def callback():
     #get json input
     decode = request.get_json()
-   
     #start line_bot_api
     channel_token = "w5LR/GWzxSwwVP910AG4AOaDBv0Ys7bEW2yJM9qYdyBfHhgnh1mRJlXKLOpncI/f5iEJLb38bLWriV9AoZ72p45BODmeil/Ux7iWSbYqgcFx9E1uLwf1kCWk6luXUQUH0ZN5WxhRITHYZjx5balb0AdB04t89/1O/w1cDnyilFU="
-    line_bot_api = LineBotApi(channel_token) 
-    if decode['events'][0]['type'] == "message":
+    line_bot_api = LineBotApi(channel_token)
+  
         #get reply token
-        reply_token = decode['events'][0]["replyToken"]
+    reply_token = decode['events'][0]["replyToken"]
         #get message
-        text = decode['events'][0]['message']['text']
-        #example message:"lb. news 1"
-        tlist = text.split(' ')
-        if len(tlist) >= 2:
-            judge = tlist[0] #lb.
-            method = tlist[1] #news
-            if len(tlist) == 3:
-                control = tlist[2] #1        
-                if judge == "lb.":
-                    if method == "eddy":
-                        line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
-                    else:
-                        line_bot_api.reply_message(reply_token, TextSendMessage(text = '無效指令: ' + method ))           
+    text = decode['events'][0]['message']['text']
+    #example message:"lb. news 1"
+    tlist = text.split(' ')
+    if len(tlist) >= 2:
+        judge = tlist[0] #lb.
+        method = tlist[1] #news ,control = tlis[2]       
+        if judge == "lb.":
+            if method == "eddy":
+                line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
+            else:
+                out_text = '無效指令: '.encode('utf_8').decode('utf-8') + method.encode('utf-8').decode('utf-8')
+                line_bot_api.reply_message(reply_token, TextSendMessage(text = out_text))           
     return "<p>hello world</p>"
 
 
