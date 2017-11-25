@@ -1,3 +1,4 @@
+#coding=utf-8
 '''
     test flask framework
     by yan-bin-lin
