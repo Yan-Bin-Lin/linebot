@@ -18,8 +18,7 @@ def website_test():
 
 @app.route('/callback', methods=['POST'])
 #first step
-def callback():
-    
+def callback():   
    
     #get json input
     decode = request.get_json()
@@ -31,6 +30,9 @@ def callback():
     reply_token = decode['events'][0]["replyToken"]
         #get message
     text = decode['events'][0]['message']['text']
+    
+    if(text.find("eddy") != -1 or text.find("EDDY") != -1):
+        line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
     #example message:"lb. news 1"
     tlist = text.split(' ')
     if len(tlist) >= 2:
