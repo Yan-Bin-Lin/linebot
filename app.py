@@ -19,6 +19,8 @@ def website_test():
 @app.route('/callback', methods=['POST'])
 #first step
 def callback():
+    
+   
     #get json input
     decode = request.get_json()
     #start line_bot_api
@@ -39,8 +41,8 @@ def callback():
             if method == "eddy":
                 line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
             else:
-                out_text = u'µL®Ä«ü¥O: '.encode('utf_8').decode('utf-8') + method.encode('utf-8').decode('utf-8')
-                line_bot_api.reply_message(reply_token, TextSendMessage(text = out_text))           
+                out_text = u'ç„¡æ•ˆæŒ‡ä»¤: '.encode('utf-8') + method.encode('utf_8')
+                line_bot_api.reply_message(reply_token, TextSendMessage(text = out_text.decode('utf-8')))           
     return "<p>hello world</p>"
 
 
