@@ -31,7 +31,7 @@ def callback():
         #get message
     text = decode['events'][0]['message']['text']
     
-    if(text.find("eddy") != -1 or text.find("EDDY") != -1):
+    if(text.upper().find("EDDY") != -1):
         line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
     #example message:"lb. news 1"
     tlist = text.split(' ')
