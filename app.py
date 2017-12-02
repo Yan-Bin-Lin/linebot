@@ -8,8 +8,7 @@ import os
 from linebot.models import TextSendMessage
 from linebot import LineBotApi
 from flask import Flask, request, Blueprint, url_for
-from localtest.blueprint_pf.pf import count_Chain
-from blueprint_pf.pf import PF
+from blueprint_pf.pf import PF,count_Chain
 from help.helper import helper,help_all
 
 app = Flask(__name__)
