@@ -1,29 +1,34 @@
 ﻿呼叫line bot格式為:
 
 lb. 指令 參數
-
 例: lb. help pf
 
 linebot指令總覽:
 
 1.help
 查找指令格式。 
+在help後輸入其他指令已顯示該指令知詳細資料
+格式: lb. help 指令
+例: lb. help pf
 
 2.pf
 計算多少Chain可破防，莫認設定單炮，可以輸入複數大砲。
 格式為: 自身傷害 : 敵人血防
 傷害以乘法計算，血防以加法計算，輸入數字量不限，
 (你爽打個100個數字進來也OK)
-範例格式: 單炮: lb. pf 2 2.5 2 5 1000 2 : 100000 200000
+範例格式:
+單炮: lb. pf 2 2.5 2 5 1000 2 : 100000 200000
 
-3.被動指令 eddy
+3.ms
+顯示降臨,轉升,牌位,挑戰之資料
+對應參數分別為 jl,js,rk,clg
+資料來源為日版wiki，台版wiki根本ㄏㄏ
+所以只有日文資料，看不懂自己google翻譯，參數打中文跑不出結果也別怪我
+範例格式:
+lb. ms jl '用於搜尋的字串' '顯示詳細資料的參數' 
+
+4.被動指令 eddy
 I say eddy you say green
 一起大喊 eddy green
 eddy green 呀 eddy green
 單抽十抽全是green
-
-欲知各指令詳細參數內容，輸入
-
-lb. help 指令
-
-例: lb. help pf

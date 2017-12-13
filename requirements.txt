@@ -1,3 +1,6 @@
 # requirements.txt
 line-bot-sdk
 flask
+BeautifulSoup
+requests
+html5lib

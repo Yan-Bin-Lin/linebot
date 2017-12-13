@@ -12,8 +12,12 @@ helper = Blueprint('helper',__name__) #regisster
 def help_all(instr):
    
     if instr:
+        
         if instr == 'pf':
             return help_pf()
+        
+        elif instr == 'ms':
+            return help_ms()
         
         else:
             out = u'指令help, 查無參數: '.encode('utf_8') + instr.encode('utf-8')
@@ -21,9 +25,8 @@ def help_all(instr):
     else:
         return help_instruct()
     
-
+    
 def help_instruct():
-
     with helper.open_resource('instruction.txt') as file:
         out = file.read()
     return out
@@ -32,3 +35,8 @@ def help_pf():
     with helper.open_resource("PF.txt") as file:
         out = file.read()     
     return out      
+
+def help_ms():
+    with helper.open_resource("PF.txt") as file:
+        out = file.read()     
+    return out     

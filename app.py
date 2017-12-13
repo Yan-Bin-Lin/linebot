@@ -7,9 +7,11 @@
 import os
 from linebot.models import TextSendMessage
 from linebot import LineBotApi
+from linebot.exceptions import LineBotApiError
 from flask import Flask, request, Blueprint, url_for
 from blueprint_pf.pf import PF,count_Chain
 from help.helper import helper,help_all
+from mission.mission import mission
 
 app = Flask(__name__)
 app.register_blueprint(PF, url_prefix='/pf')
@@ -44,6 +46,7 @@ def callback():
         method = tlist[1] #news ,control = tlis[2]       
         if judge == "lb.":
             
+            #help method
             if method == "help":
                 if len(tlist) == 2:
                     tlist.append('')
@@ -53,10 +56,24 @@ def callback():
             elif method == "pf":     
                 out_text = count_Chain(tlist[2:])           
             
+            #mission method
+            elif method == "ms":
+                if len(tlist) == 3:
+                    tlist.append('')
+                out_text = mission(tlist[2:])
+            
             else:
                 out_text = u'無效指令: '.encode('utf-8') + method.encode('utf_8')
             
-            line_bot_api.reply_message(reply_token, TextSendMessage(text = out_text.decode('utf-8')))           
+            try:
+                line_bot_api.reply_message(reply_token, TextSendMessage(text = out_text.decode('utf-8')))
+            except LineBotApiError as e:
+                out_text = '回覆錯誤!!\n錯誤資訊: ' + e.error.message + '\n錯誤詳情: ' + str(e.error.details)
+                print('error!!!!!!!!!!!!!!!!!!!!!!!!!!!\n')
+                print(e.status_code)
+                print(e.error.message)
+                print(e.error.details)       
+                line_bot_api.reply_message(reply_token, TextSendMessage(text = out_text))
     
     return "<p>hello world</p>"
 
