@@ -1,6 +1,6 @@
 # requirements.txt
 line-bot-sdk
 flask
-BeautifulSoup
+beautifulsoup4
 requests
 html5lib
