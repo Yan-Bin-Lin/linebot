@@ -37,6 +37,6 @@ def help_pf():
     return out      
 
 def help_ms():
-    with helper.open_resource("PF.txt") as file:
+    with helper.open_resource("MS.txt") as file:
         out = file.read()     
     return out     
