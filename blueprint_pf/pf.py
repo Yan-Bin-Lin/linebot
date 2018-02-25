@@ -35,10 +35,9 @@ def count_Chain(mlist):
         if numOfFire > 1:
             index_atk = mlist.index('+')#index +
     
-        deff = 0
-        for i in range(Separated + 1, len(mlist)): #count hp + def ,  5
-            deff += int(mlist[i])
-    
+        deff = int(mlist[Separated + 1]) * numOfFire
+        deff += int(mlist[len(mlist) - 1]) #count hp + def ,  5
+              
         atk = 1.0    
         for i in range(index_base):     #count base , 1 2 3
             atk *= float(mlist[i])
@@ -56,6 +55,7 @@ def count_Chain(mlist):
                 index_atk = mlist[index_atk + 1:].index(':')
             index_atk = index_atk + index_base + 1
         # (chain * 2 * 0.01 + 1) * base_atack >= hp + def
+        
         chain = (deff / (total * atk) - 1) / 2 / 0.01       
         if chain < 0: chain = 0
         chain = math.ceil(chain)
