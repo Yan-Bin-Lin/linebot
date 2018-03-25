@@ -41,7 +41,9 @@ def search_id(nostr):
     #id format
     id = '{:0>3d}'.format(int(no))
     #find url
+    digit = int(no) % 50
     no = int(int(no) / 50)
+    if digit == 0: no -= 1
     print('no = ' + str(no))
     url_end = '{:0>3d}'.format(int(no * 50) + 1) + '-' 
     return id
