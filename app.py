@@ -5,13 +5,14 @@
 '''
 
 import os
-from linebot.models import TextSendMessage
+from linebot.models import TextSendMessage,ImageSendMessage
 from linebot import LineBotApi
 from linebot.exceptions import LineBotApiError
 from flask import Flask, request, Blueprint, url_for
 from blueprint_pf.pf import PF,count_Chain
 from help.helper import helper,help_all
 from mission.mission import mission
+from find_card.find_card import search_card
 
 app = Flask(__name__)
 app.register_blueprint(PF, url_prefix='/pf')
@@ -37,7 +38,8 @@ def callback():
     text = decode['events'][0]['message']['text']
     
     if(text.upper().find("EDDY") != -1):
-        line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))
+        line_bot_api.reply_message(reply_token, TextSendMessage(text='Eddy Green!'))        
+                
     #example message:"lb. news 1"
     tlist = text.split(' ')
     if len(tlist) >= 2:
@@ -61,6 +63,16 @@ def callback():
                 if len(tlist) == 3:
                     tlist.append('')
                 out_text = mission(tlist[2:])
+                
+            #find card method    
+            elif method == 'card':
+                out_text = search_card(tlist[2:])
+                if out_text.find('http') != -1:
+                    line_bot_api.reply_message(reply_token, ImageSendMessage(
+                        original_content_url=out_text,
+                        preview_image_url=out_text))
+                else:
+                    out_text = out_text.encode('utf-8') 
             
             else:
                 out_text = u'無效指令: '.encode('utf-8') + method.encode('utf_8')

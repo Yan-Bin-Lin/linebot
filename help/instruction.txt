@@ -28,7 +28,18 @@ linebot指令總覽:
 範例格式:
 lb. ms jl '用於搜尋的字串' '顯示詳細資料的參數' 
 
-4.被動指令 eddy
+4.card
+找魂體資訊用，有3中找法，分別為從id搜尋，從卡牌系列裡用名字，與從屬性 type rare搜尋
+對應的title分別為no.   tag.  e. t. r.
+再打上title後直接輸入對應資訊就能用於搜尋，
+如果是從系列(tag)，可在後面+用來搜尋的字，或是draw來找抽卡機裡的卡片資訊
+範例格式:
+lb. card no.9
+lb. card tag.初音 初音
+lb. card tag.初音 draw
+lb. card r.6 e.火 t.平衡
+
+5.被動指令 eddy
 I say eddy you say green
 一起大喊 eddy green
 eddy green 呀 eddy green

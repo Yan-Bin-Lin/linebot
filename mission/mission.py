@@ -65,7 +65,13 @@ def show_race(race,key,detai):
     out = ''
     result = [['1','2']]
     #find assigned data
+    #default latest rk and clg
     if key == '':
+        out_text = filt[start].get('title')
+        key += out_text[out_text.find('】') + 1:out_text.find('-') - 1]
+    
+    #all rk,clg name
+    if key == 'all':
         #show all
         for i in range(start,end):
             out_text = filt[i].get('title')
@@ -81,7 +87,7 @@ def show_race(race,key,detai):
                 text_href = filt[i].get('href')
                 inside = [text_title, text_href]
                 result.append(inside)
-                out += text_title + '\n' + text_href + '\n\n'
+                out += text_title + '\n' + text_href + '\n'
                 max += 1
                 if(max >= 5):
                     break  
@@ -179,5 +185,5 @@ def show_data(url,detail):
             else:
                 if detail == '':
                     continue
-        out_text += out + '\n'
+        out_text += out 
     return out_text

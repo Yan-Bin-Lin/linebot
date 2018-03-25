@@ -19,6 +19,9 @@ def help_all(instr):
         elif instr == 'ms':
             return help_ms()
         
+        elif instr == 'card':
+            return help_card()
+        
         else:
             out = u'指令help, 查無參數: '.encode('utf_8') + instr.encode('utf-8')
             return out
@@ -40,3 +43,8 @@ def help_ms():
     with helper.open_resource("MS.txt") as file:
         out = file.read()     
     return out     
+
+def help_card():
+    with helper.open_resource("CARD.txt") as file:
+        out = file.read()     
+    return out         
