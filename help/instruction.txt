@@ -33,11 +33,13 @@ lb. ms jl '用於搜尋的字串' '顯示詳細資料的參數'
 對應的title分別為no.   tag.  e. t. r.
 再打上title後直接輸入對應資訊就能用於搜尋，
 如果是從系列(tag)，可在後面+用來搜尋的字，或是draw來找抽卡機裡的卡片資訊
+如果是從卡片資訊(type, 屬性, 稀有度等)，在打過title後，可在後面打n. 加上 "搜尋卡片名稱用字串"，
 範例格式:
 lb. card no.9
 lb. card tag.初音 初音
 lb. card tag.初音 draw
 lb. card r.6 e.火 t.平衡
+lb. card t.藝術 n.蛇神に選
 
 5.被動指令 eddy
 I say eddy you say green

@@ -79,7 +79,8 @@ order = {'r' : 0, 'e' : 1, 't' : 2}
 attritube = {
     'r' : {'1' : '1', '2' : '2', '3' : '3', '4' : '4', '5' : '5', '6' : '6'},
     'e' : {'火' : '火', '水' : '水', '木' : '木', '光' : '光', '暗' : '闇'},
-    't' : {'超越' :'超越', '神秘' :'アングラ', '藝術' : 'アート', '平衡' : 'バランス', '體力' : '体力', '治癒' : '癒し'}
+    't' : {'超越' :'超越', '神秘' :'アングラ', '藝術' : 'アート', '平衡' : 'バランス', '體力' : '体力', '治癒' : '癒し'},
+    'n' : {}
             }
 
 #return the url of first step website
@@ -118,11 +119,16 @@ def attrubute_second(url_end, instruct):
         ins[0] = get_head(instruct[i])
         ins[1] = get_data(instruct[i])
         search.append(ins.copy())
+        #add name search to dict        
+        if ins[0] == 'n':
+            name = ins[1]
+            attritube[ins[0]][name] = name
+                    
     #go to the website
     web = webin(url_end)    
     #the card table
     all = web.soup.find_all('table', id = re.compile('ui_wikidb_table_'))
-    out_str = []
+    out = []
     for list in all:
         #table raw
         table = list.find_all('tr')
@@ -142,18 +148,29 @@ def attrubute_second(url_end, instruct):
                     card = False
                     break
             #if card data coincide the input attribute, get this card data
-            if card != False:    
-                txt = detail[0].get_text() + ' '
+            if card != False: 
+                info = []   
+                info.append(detail[0].get_text())
                 for i in range(2, len(detail)):
-                    txt = txt + detail[i].get_text() + ' ' 
-                out_str.append(txt + '\n')
-         
-    #return card data
-    out = ''
-    for txt in out_str:
-        out = out + txt
-    #max size string of line_bot is 2000 character 
-    return out[:1995]    
+                    info.append(detail[i].get_text()) 
+                out.append(info)
+    
+    #out put
+    out_str = ''
+    #count how many card were found
+    total = len(out)
+    #only one card were found, get card picture
+    if total == 1:
+        out_str = find_card(out[0][1])
+    #two more card found, print cards data
+    else:
+        for cards in out:
+            txt = cards[0] + ' '
+            for i in range(1, len(cards)):
+                txt = txt + ' ' + cards[i]
+            out_str += txt + '\n'
+    #the maax string of line_bot is 2000 character
+    return out_str[:1995]         
         
 #find card by card attrubute        
 def find_attrubute(instruct):
