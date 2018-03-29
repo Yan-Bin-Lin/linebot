@@ -75,7 +75,7 @@ def find_id(id_str):
 
 
 #dict for chinese input chage to japanese 
-order = {'r' : 0, 'e' : 1, 't' : 2}
+order = {'n' : -1, 'r' : 0, 'e' : 1, 't' : 2}
 attritube = {
     'r' : {'1' : '1', '2' : '2', '3' : '3', '4' : '4', '5' : '5', '6' : '6'},
     'e' : {'火' : '火', '水' : '水', '木' : '木', '光' : '光', '暗' : '闇'},
